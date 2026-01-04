@@ -6,20 +6,20 @@ public class FourJanuary {
         List<List<String>> res = new ArrayList<List<String>>();
 
         for (String str : strs) {
-            char[] ch = str.toCharArray();
-            Arrays.sort(ch);
+            char[] ch = str.toCharArray(); // step1 - convert string to array
+            Arrays.sort(ch); // sort string array
 
-            String key = new String(ch);
+            String key = new String(ch); // declare a sorted string as a key
 
             if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<String>());
+                map.put(key, new ArrayList<String>()); // if not exist add key and value as empty list
             }
 
-            map.get(key).add(str);
+            map.get(key).add(str); // add value in list
         }
 
         for (Map.Entry<String, List<String>> e : map.entrySet()) {
-            res.add(e.getValue());
+            res.add(e.getValue()); // add value in res from map
         }
         return res;
     }
