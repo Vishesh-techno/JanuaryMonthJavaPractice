@@ -1,33 +1,24 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Fivejanuary {
-//    public static int numJewelsInStones(String jewels, String stones){
-//        Map<Character, Integer> map = new HashMap<>();
-//
-//        char[] ch = jewels.toCharArray();
-//
-//        for(int i=0; i<ch.length; i++){
-//            if(map.containsKey(ch[i])){
-//                map.put(ch[i], map.get(ch[i]) + 1);
-//            }else{
-//                map.put(ch[i], 1);
-//            }
-//        }
-//
-//        int count = 0;
-//
-//        char[] ch1 = stones.toCharArray();
-//
-//        for(int i=0; i<ch1.length; i++){
-//            if(map.containsKey(ch1[i])){
-//                map.put(ch1[i], map.get(ch1[i]) + 1);
-//            }else{
-//                map.put(ch1[i], 1);
-//            }
-//        }
-//        return count;
-//    }
+    public static int numJewelsInStones(String jewels, String stones) {
+        Set<Character> set = new HashSet<>();
+        int count = 0;
+
+        for (char ch : jewels.toCharArray()) {
+            set.add(ch);
+        }
+
+        for (char ch : stones.toCharArray()) {
+            if (set.contains(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     public static int numJewelsInStonesII(String jewels, String stones) {
         char[] ch = jewels.toCharArray();
