@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Fivejanuary {
     public static int fourSumCountII(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
@@ -48,9 +45,9 @@ public class Fivejanuary {
         char[] ch = jewels.toCharArray();
         char[] ch1 = stones.toCharArray();
         int count = 0;
-        for (int i = 0; i < ch.length; i++) {
-            for (int j = 0; j < ch1.length; j++) {
-                if (ch[i] == ch1[j]) {
+        for (char c : ch) {
+            for (char value : ch1) {
+                if (c == value) {
                     count++;
                 }
             }
