@@ -178,6 +178,49 @@ public class SixJanuary {
         return maxSum;
     }
 
+    public static int trappedWater(int[] nums) {
+//        calculate leftMax boundary
+        int[] leftMax = new int[nums.length];
+        leftMax[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            leftMax[i] = Math.max(nums[i], leftMax[i - 1]);
+        }
+
+        int[] rightMax = new int[nums.length];
+        rightMax[nums.length - 1] = nums[nums.length - 1];
+        for (int i = nums.length - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(nums[i], rightMax[i + 1]);
+        }
+        int trappedWater = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int waterLevel = Math.min(leftMax[i], rightMax[i]);
+            trappedWater += waterLevel - nums[i];
+        }
+        return trappedWater;
+    }
+
+    //    Buy and Sell Stocks
+    public static int stockProfit(int[] prices) {
+        int buyPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int price : prices) {
+            if (buyPrice < price) {
+                int profit = price - buyPrice;
+                maxProfit = Math.max(profit, maxProfit);
+            } else {
+                buyPrice = price;
+            }
+        }
+        return maxProfit;
+    }
+
+    public static void vehicles(int totalVehicles, int totalWheel) {
+        int FW = (totalWheel - 2 * totalVehicles) / 2;
+        System.out.println("The no. of Four Wheeler is: " + FW);
+        System.out.println("The no. of Two Wheeler is: " + (totalVehicles - FW));
+    }
+
     public static void main(String[] args) {
         String str = "abcabcbb";
         int[] nums = {45, 15, 7, 5, 18, 2, 50};
@@ -192,5 +235,9 @@ public class SixJanuary {
 //        System.out.println(maxSubArraySum(num));
 //        System.out.println(maxSubArray(num));
         System.out.println(kadanesAlgorithm(num));
+        int[] water = {4, 2, 0, 6, 3, 2, 5};
+        System.out.println(trappedWater(water));
+        System.out.println(stockProfit(water));
+        vehicles(200, 540);
     }
 }
