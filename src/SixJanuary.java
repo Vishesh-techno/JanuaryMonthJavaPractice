@@ -224,7 +224,11 @@ public class SixJanuary {
     public static void findSubSets(String str, String ans, int i) {
 //        base case
         if (i == str.length()) {
-            System.out.println(ans);
+            if (ans.isEmpty()) {
+                System.out.println("null");
+            } else {
+                System.out.println(ans);
+            }
             return;
         }
 
