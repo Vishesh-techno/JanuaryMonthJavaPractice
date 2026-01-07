@@ -222,7 +222,7 @@ public class SixJanuary {
     }
 
     public static void findSubSets(String str, String ans, int i) {
-//        base case
+//      base case
         if (i == str.length()) {
             if (ans.isEmpty()) {
                 System.out.println("null");
@@ -232,10 +232,10 @@ public class SixJanuary {
             return;
         }
 
-//        Recursion case
-//        Yes Choice
+//      Recursion case
+//      Yes Choice
         findSubSets(str, ans + str.charAt(i), i + 1);
-//        No choice
+//      No choice
         findSubSets(str, ans, i + 1);
     }
 
