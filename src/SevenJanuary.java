@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SevenJanuary {
     public static void permutations(String str, String ans) {
         if (str.length() == 0) {
@@ -78,6 +81,68 @@ public class SevenJanuary {
 
     static int count = 0;
 
+    public static void findSubSets(String str, String ans, int i) {
+//        base case
+        if (i == str.length()) {
+            if (ans.isEmpty()) {
+                System.out.println("null");
+            } else {
+                System.out.println(ans);
+            }
+            return;
+        }
+//        Recursion Case
+        findSubSets(str, ans + str.charAt(i), i + 1); // yes Case
+        findSubSets(str, ans, i + 1); // No case
+    }
+
+    public static List<List<Integer>> findSubSetsNumber(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());
+        for (int num : nums) {
+            int n = res.size();
+            for (int j = 0; j < n; j++) {
+                List<Integer> temp = new ArrayList<>(res.get(j));
+                temp.add(num);
+                res.add(temp);
+            }
+        }
+        return res;
+    }
+
+    public static void generateSubSet(int index, int[] nums, List<Integer> curr, List<List<Integer>> res) {
+        res.add(new ArrayList<>(curr));
+        for (int i = index; i < nums.length; i++) {
+            curr.add(nums[i]);
+            generateSubSet(i + 1, nums, curr, res);
+//            curr.removeLast();
+            curr.remove(curr.size() - 1);
+        }
+    }
+
+    public static List<List<Integer>> findSubSetsNumberII(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        generateSubSet(0, nums, new ArrayList<>(), res);
+        return res;
+    }
+
+    public static List<List<Integer>> combinations(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        generateSubSetII(1, n, new ArrayList<>(), res, k);
+        return res;
+    }
+
+    private static void generateSubSetII(int start, int n, List<Integer> curr, List<List<Integer>> res, int k) {
+        if (curr.size() == k) {
+            res.add(new ArrayList<>(curr));
+        }
+        for (int i = start; i <= n; i++) {
+            curr.add(i);
+            generateSubSetII(i + 1, n, curr, res, k);
+            curr.removeLast();
+        }
+    }
+
     public static void main(String[] args) {
         permutations("abc", "");
         int n = 3;
@@ -90,6 +155,10 @@ public class SevenJanuary {
             System.out.println("Solution is Not Possible");
         }
         System.out.println("The No. of possible solution is: " + count);
+        findSubSets("ABC", "", 0);
+        System.out.println(findSubSetsNumber(new int[]{4, 5, 6}));
+        System.out.println(findSubSetsNumberII(new int[]{4, 5, 6}));
 
+        System.out.println(combinations(4, 2));
     }
 }
