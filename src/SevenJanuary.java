@@ -143,6 +143,23 @@ public class SevenJanuary {
         }
     }
 
+    public static List<List<Integer>> combinationSum3(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        generateSumSubSet(1, 9, new ArrayList<>(), res, n, k);
+        return res;
+    }
+
+    private static void generateSumSubSet(int start, int end, List<Integer> curr, List<List<Integer>> res, int k, int target) {
+        if(target == 0 && curr.size() == k) {
+            res.add(new ArrayList<>(curr));
+        }
+        for (int i = start; i <= end; i++) {
+            curr.add(i);
+            generateSumSubSet(i + 1, end, curr, res, k, target - i);
+            curr.removeLast();
+        }
+    }
+
     public static void main(String[] args) {
         permutations("abc", "");
         int n = 3;
@@ -158,7 +175,7 @@ public class SevenJanuary {
         findSubSets("ABC", "", 0);
         System.out.println(findSubSetsNumber(new int[]{4, 5, 6}));
         System.out.println(findSubSetsNumberII(new int[]{4, 5, 6}));
-
         System.out.println(combinations(4, 2));
+        System.out.println(combinationSum3(4, 7));
     }
 }
