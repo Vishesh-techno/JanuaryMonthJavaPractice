@@ -150,12 +150,28 @@ public class SevenJanuary {
     }
 
     private static void generateSumSubSet(int start, int end, List<Integer> curr, List<List<Integer>> res, int k, int target) {
-        if(target == 0 && curr.size() == k) {
+        if (target == 0 && curr.size() == k) {
             res.add(new ArrayList<>(curr));
         }
         for (int i = start; i <= end; i++) {
             curr.add(i);
             generateSumSubSet(i + 1, end, curr, res, k, target - i);
+            curr.removeLast();
+        }
+    }
+
+    public static List<List<Integer>> subset2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        generateSubset2(0, nums, new ArrayList<>(), res);
+        return res;
+    }
+
+    private static void generateSubset2(int start, int[] nums, List<Integer> curr, List<List<Integer>> res) {
+        res.add(new ArrayList<>(curr));
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i - 1] == nums[i]) continue;
+            curr.add(nums[i]);
+            generateSubset2(i + 1, nums, curr, res);
             curr.removeLast();
         }
     }
@@ -176,6 +192,7 @@ public class SevenJanuary {
         System.out.println(findSubSetsNumber(new int[]{4, 5, 6}));
         System.out.println(findSubSetsNumberII(new int[]{4, 5, 6}));
         System.out.println(combinations(4, 2));
-        System.out.println(combinationSum3(4, 7));
+        System.out.println(combinationSum3(4, 10));
+        System.out.println(subset2(new int[]{5, 5, 4, 4, 3, 3}));
     }
 }
