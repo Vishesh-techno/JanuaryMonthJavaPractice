@@ -103,5 +103,11 @@ public class EightJanuary {
         System.out.println(combinationSum2(num, 8));
         int[] arr = {2, 3, 6, 7};
         System.out.println(combinationSum(arr, 7));
+        String[] number = {"1", "2", "3"};
+        int[] arrr = new int[number.length];
+        for (int i = 0; i < number.length; i++) {
+            arrr[i] = Integer.parseInt(number[i]);
+        }
+        System.out.println(Arrays.toString(arrr));
     }
 }
