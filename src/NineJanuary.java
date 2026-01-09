@@ -143,6 +143,44 @@ public class NineJanuary {
         return avg / k;
     }
 
+    public static int maxSumSubArray(int[] nums, int k) {
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+            max = Math.max(sum, max);
+        }
+        for (int i = k; i < nums.length; i++) {
+            sum += nums[i];
+            sum -= nums[i - k];
+            max = Math.max(sum, max);
+        }
+        return max;
+    }
+
+    public static int[] rearrangeArrayIncDec(int[] nums) {
+        Arrays.sort(nums);
+        int start = nums.length / 2;
+        int end = nums.length - 1;
+        while (start <= end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+        return nums;
+    }
+
+    public static void productOfArrayExceptSelf(int[] nums) {
+        int prod = 1;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length - 1; j++) {
+                prod = prod * nums[j + 1];
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4};
         System.out.println(subset(nums));
@@ -153,6 +191,8 @@ public class NineJanuary {
         rotateArrayByKElements(nums, 45);
         System.out.println(Arrays.toString(nums));
         System.out.println(avgOfArray(nums, 2));
+        System.out.println(maxSumSubArray(new int[]{2, 1, 5, 1, 3, 2}, 3));
+        System.out.println(Arrays.toString(rearrangeArrayIncDec(new int[]{8, 7, 1, 6, 5, 9})));
     }
 
 }
