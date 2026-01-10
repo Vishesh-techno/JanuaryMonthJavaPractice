@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TenJanuary {
     public static int secondLargest(int[] nums) {
@@ -123,6 +120,75 @@ public class TenJanuary {
         return count;
     }
 
+    public static int uniqueChar(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (map.get(str.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static boolean isAnagram(String s, String l) {
+        if (s.length() != l.length()) {
+            return false;
+        }
+        int[] res = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            res[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < l.length(); i++) {
+            res[l.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i < res.length; i++) {
+            if (res[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int countWords(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == ' ') {
+                count++;
+            }
+        }
+        return count + 1;
+    }
+
+    public static String removeDuplicatesCharacters(String str) {
+        Set<Character> set = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
+        char[] s = str.toCharArray();
+        for (int i = 0; i < s.length; i++) {
+            if (!set.contains(s[i])) {
+                set.add(s[i]);
+                sb.append(s[i]);
+            }
+        }
+        return new String(sb);
+    }
+
+    public static String longestWordInString(String str) {
+        str = str.replaceAll("[^a-zA-Z ]", "");
+        String[] words = str.split(" ");
+        String longest = "";
+
+        for (String s : words) {
+            if (s.length() > longest.length()) {
+                longest = s;
+            }
+        }
+        return longest;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n;
@@ -156,5 +222,9 @@ public class TenJanuary {
         }
 
         System.out.println("the no. of vowel in a given string array: " + vowelStrings(new String[]{"are", "amy", "u"}, 0, 2));
+        System.out.println(uniqueChar("aabbccddeef"));
+        System.out.println(isAnagram("leetcode", "decoteel"));
+        System.out.println(countWords("I love Java"));
+        System.out.println(removeDuplicatesCharacters("programming"));
     }
 }
