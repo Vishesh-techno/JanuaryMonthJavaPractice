@@ -189,6 +189,25 @@ public class TenJanuary {
         return longest;
     }
 
+    public static boolean uniqueCharacter(String str) {
+        Set<Character> set = new HashSet<>();
+        char[] ch = str.toCharArray();
+        for (char c : ch) {
+            if (!set.contains(c)) {
+                set.add(c);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean stringRotation(String str, String goal) {
+        if (str.length() != goal.length()) return false;
+        String s1 = str + str;
+        return s1.contains(goal);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n;
@@ -226,5 +245,7 @@ public class TenJanuary {
         System.out.println(isAnagram("leetcode", "decoteel"));
         System.out.println(countWords("I love Java"));
         System.out.println(removeDuplicatesCharacters("programming"));
+        System.out.println(uniqueCharacter("abcdd"));
+        System.out.println(stringRotation("abcd", "cdab"));
     }
 }
