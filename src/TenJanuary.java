@@ -74,6 +74,55 @@ public class TenJanuary {
         }
     }
 
+    public static String reverseAString(String s) {
+        String revString = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            revString += s.charAt(i);
+        }
+        return revString;
+    }
+
+    public static String revString(String s) {
+        char[] ch = s.toCharArray();
+        int start = 0;
+        int end = ch.length - 1;
+
+        while (start <= end) {
+            char temp = ch[start];
+            ch[start] = ch[end];
+            ch[end] = temp;
+            start++;
+            end--;
+        }
+        return new String(ch);
+    }
+
+    public static boolean checkPalindrome(String str) {
+        String s = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        int start = 0;
+        int end = s.length() - 1;
+        while (start <= end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+    public static int vowelStrings(String[] words, int left, int right) {
+        int count = 0;
+        for (int i = left; i <= right; i++) {
+            char start = words[i].charAt(0);
+            char end = words[i].charAt(words[i].length() - 1);
+            if ((start == 'a' || start == 'e' || start == 'i' || start == 'o' || start == 'u') && (end == 'a' || end == 'e' || end == 'i' || end == 'o' || end == 'u')) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n;
@@ -94,5 +143,18 @@ public class TenJanuary {
         System.out.println("The Subsets are: " + subset(arr));
         System.out.println("The Combinations are: " + combination(3, 2));
         System.out.println("The Permutations are: " + permutation(arr));
+        System.out.print("Enter a Single word: ");
+        String s = sc.next();
+        System.out.println("Original String: " + s);
+        System.out.println("Reversed String: " + reverseAString(s));
+        System.out.println("Reversed String: " + revString(s));
+        if (checkPalindrome(s)) {
+            System.out.println("This is a Palindrome");
+            System.out.println(revString(s));
+        } else {
+            System.out.println("This is not a Palindrome");
+        }
+
+        System.out.println("the no. of vowel in a given string array: " + vowelStrings(new String[]{"are", "amy", "u"}, 0, 2));
     }
 }
