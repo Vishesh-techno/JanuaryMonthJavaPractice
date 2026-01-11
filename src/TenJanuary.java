@@ -247,5 +247,6 @@ public class TenJanuary {
         System.out.println(removeDuplicatesCharacters("programming"));
         System.out.println(uniqueCharacter("abcdd"));
         System.out.println(stringRotation("abcd", "cdab"));
+        System.out.println(longestWordInString("the no. of vowel in a given string array"));
     }
 }
