@@ -1,3 +1,5 @@
+import javax.xml.transform.Source;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -106,34 +108,95 @@ public class ElevenJanuary {
         }
     }
 
+    public static int countElements(int[] nums) {
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int prodOfAllDigits(int n) {
+        int prod = 1;
+        while (n != 0) {
+            if (prod == 0) {
+                prod = 1;
+            }
+            int digit = n % 10;
+            prod = prod * digit;
+            n = n / 10;
+        }
+        return prod;
+    }
+
+    //  aqua -> a, Black -> b  colours
+    public static int countMaxColourInOneSet(String str, int l) {
+        int count;
+        int maxCount = 0;
+        for (int i = 0; i < str.length(); i += l) {
+            count = 0;
+            for (int j = i; j < i + l && j < str.length(); j++) {
+                if (str.charAt(j) == 'a') {
+                    count++;
+                }
+            }
+            maxCount = Math.max(maxCount, count);
+        }
+        return maxCount;
+    }
+
+    public static BigInteger factorail(int n) {
+        if (n == 0 || n == 1) {
+            return BigInteger.ONE;
+        }
+        return BigInteger.valueOf(n).multiply(factorail(n - 1));
+    }
+
+    public static BigInteger permutations(int n) {
+        return BigInteger.valueOf(2).multiply(factorail(n - 1));
+    }
 
     public static void main(String[] args) {
-        System.out.println(fact(25));
-        System.out.println(sumOfNNaturalNo(100));
-        System.out.println(fibonacciNo(25));
-        System.out.println(isSorted(new int[]{4, 5, 6, 7, 9, 8}, 0));
-//        System.out.println(choclateProblem(new int[]{4,5,0,1,9,0,5,0}));
+//        System.out.println(fact(25));
+//        System.out.println(sumOfNNaturalNo(100));
+//        System.out.println(fibonacciNo(25));
+//        System.out.println(isSorted(new int[]{4, 5, 6, 7, 9, 8}, 0));
+////        System.out.println(choclateProblem(new int[]{4,5,0,1,9,0,5,0}));
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter The size of array");
+//        System.out.println("Enter The size of array");
+//        int n = sc.nextInt();
+//        int[] arr = new int[n];
+//        for (int i = 0; i < arr.length; i++) {
+//            arr[i] = sc.nextInt();
+//        }
+//        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(choclateProblem(arr)));
+//        System.out.println("Total Sunday: " + countSunday("tue", 6));
+//        String day = sc.next().toLowerCase();
+//        int n1 = sc.nextInt();
+//        System.out.println(countSunday(day, n1));
+//        int size = sc.nextInt();
+//        int[] baggage = new int[size];
+//        for (int i = 0; i < baggage.length; i++) {
+//            baggage[i] = sc.nextInt();
+//        }
+//        sortOnRisk(baggage);
+//        for (int i = 0; i < baggage.length; i++) {
+//            System.out.print(baggage[i] + " ");
+//        }
+//        int n2 = sc.nextInt();
+//        int[] Elements = new int[n2];
+//        for (int i = 0; i < Elements.length; i++) {
+//            Elements[i] = sc.nextInt();
+//        }
+//        System.out.println(countElements(Elements));
+//        int n = sc.nextInt();
+//        System.out.println(prodOfAllDigits(n));
+//        String s = sc.next(); //aaaaaabbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbcacccccccccccccacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+//        System.out.println(countMaxColourInOneSet(s, 40));
         int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(choclateProblem(arr)));
-        System.out.println("Total Sunday: " + countSunday("tue", 6));
-        String day = sc.next().toLowerCase();
-        int n1 = sc.nextInt();
-        System.out.println(countSunday(day, n1));
-        int size = sc.nextInt();
-        int[] baggage = new int[size];
-        for (int i = 0; i < baggage.length; i++) {
-            baggage[i] = sc.nextInt();
-        }
-        sortOnRisk(baggage);
-        for (int i = 0; i < baggage.length; i++) {
-            System.out.print(baggage[i] + " ");
-        }
+        System.out.println(permutations(n));
     }
 }
