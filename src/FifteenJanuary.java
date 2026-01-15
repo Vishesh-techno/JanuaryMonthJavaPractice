@@ -17,6 +17,17 @@ public class FifteenJanuary {
         return true;
     }
 
+    public static int numberOfCuts(int n) {
+        if (n < 2) {
+            return 0;
+        }
+        if (n % 2 == 0) {
+            return n / 2;
+        } else {
+            return n;
+        }
+    }
+
     public static void main(String[] args) {
         int[][] coordinates = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
 
@@ -25,5 +36,7 @@ public class FifteenJanuary {
         } else {
             System.out.println("the coordinates not in a Straight Line");
         }
+
+        System.out.println(numberOfCuts(45));
     }
 }
