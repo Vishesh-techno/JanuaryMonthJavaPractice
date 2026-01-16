@@ -40,8 +40,22 @@ public class SixteenJanuary {
         return nums;
     }
 
+    public static int hammingWeight(int n) { // count no. of ones in the binary no. of given "n"
+        int count = 0;
+
+        while (n > 0) {
+            if ((n & 1) == 0) {
+                count++;
+            }
+            n = n >> 1;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         int[] nums = {4, 5, 7, 466, 59, 465, 418, 4, 64, 6, 49, 641, 64646, 469865, 46};
         System.out.println(Arrays.toString(sorting(nums)));
+
+        System.out.println(hammingWeight(458545476));
     }
 }
