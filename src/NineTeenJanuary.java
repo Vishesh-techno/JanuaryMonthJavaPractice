@@ -74,6 +74,36 @@ public class NineTeenJanuary {
         return dummy.next;
     }
 
+    public static ListNode reverseList(ListNode head) {
+        ListNode prev = null,
+                curr = head;
+        ListNode next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public static ListNode reverseListII(ListNode head) {
+        return reverseHelper(null, head);
+    }
+
+    private static ListNode reverseHelper(ListNode prev, ListNode curr) {
+        if (curr == null) {
+            return prev;
+        }
+        ListNode next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+
+        return reverseHelper(prev, curr);
+    }
+
     public static void main(String[] args) {
         add(6);
         add(5);
@@ -85,6 +115,10 @@ public class NineTeenJanuary {
         head = swapPairs(head);
         printList();
         head = swapPairsII(head);
+        printList();
+        head = reverseList(head);
+        printList();
+        head = reverseListII(head);
         printList();
     }
 }
