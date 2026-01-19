@@ -53,6 +53,27 @@ public class NineTeenJanuary {
         return dummy.next;
     }
 
+    public static void swapNodeHelper(ListNode prev, ListNode curr) {
+        if (curr == null || curr.next == null) {
+            return;
+        }
+        ListNode first = curr,
+                second = curr.next;
+        first.next = second.next;
+        second.next = first;
+        prev.next = second;
+
+        swapNodeHelper(first, first.next);
+    }
+
+    public static ListNode swapPairsII(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode p = dummy;
+        swapNodeHelper(p, head);
+        return dummy.next;
+    }
+
     public static void main(String[] args) {
         add(6);
         add(5);
@@ -62,6 +83,8 @@ public class NineTeenJanuary {
         add(1);
         printList();
         head = swapPairs(head);
+        printList();
+        head = swapPairsII(head);
         printList();
     }
 }
