@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 public class TwentyTwoJanuary {
-    public static boolean validParanthesis(String bracket) {
+    public static boolean validParenthesis(String bracket) {
         Stack<Character> s = new Stack<>();
 
         for (char c : bracket.toCharArray()) {
@@ -21,6 +21,6 @@ public class TwentyTwoJanuary {
     }
 
     public static void main(String[] args) {
-        System.out.println(validParanthesis("{{(([[){}]]"));
+        System.out.println(validParenthesis("{{(([[){}]]"));
     }
 }
