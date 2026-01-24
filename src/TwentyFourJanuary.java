@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TwentyFourJanuary {
@@ -68,11 +69,27 @@ public class TwentyFourJanuary {
         return res;
     }
 
+    public static List<Integer> leadersII(int[] nums) {
+        int n = nums.length;
+        List<Integer> res = new ArrayList<>();
+        int max = nums[n - 1];
+        res.add(max);
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] >= max) {
+                max = nums[i];
+                res.add(max);
+            }
+        }
+        Collections.reverse(res);
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {2, 3, 8, 1, 5, 5};
         System.out.println(maxSumSubArray(nums));
         System.out.println(minJumps(nums));
         System.out.println(isValidJump(nums));
         System.out.println(leaders(nums));
+        System.out.println(leadersII(nums));
     }
 }
