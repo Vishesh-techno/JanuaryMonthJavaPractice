@@ -22,9 +22,29 @@ public class TwentyFiveJanuary {
         }
     }
 
+    public static int countMajorityElement(int[] nums) {
+        int count = 0, candidate = 0;
+//        if Element is same then count be increased by 1
+//        otherwise count is decreased by 1 we are returning
+//        that element which is more than half of the length of array
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            if (num == candidate) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        return candidate;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1};
+        int[] arr = {0, 1, 1, 1, 1, 2, 1, 2, 1, 0, 0, 1};
         sort0s1s2s(arr);
         System.out.println(Arrays.toString(arr));
+        System.out.println(countMajorityElement(arr));
     }
 }
