@@ -85,10 +85,37 @@ public class TwentySixJanuary {
         return count;
     }
 
+    public static int findMin(int[] nums) { // find minimum in rotatedSorted Array
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] > nums[i + 1]) {
+                return nums[i + 1];
+            }
+        }
+        return nums[0];
+    }
+
+    public static int findMinII(int[] nums) { // find minimum in rotatedSorted Array
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] > nums[high]) {
+                low = mid + 1;
+            } else if (nums[mid] < nums[high]) {
+                high = mid;
+            } else {
+                high--;
+            }
+        }
+        return nums[low];
+    }
+
     public static void main(String[] args) {
         int[] nums = {-5, 54, 94, 156, 1, 54, 61, 81, 0, 80, 4, 84, 4};
 //        merge(nums, 0, nums.length - 1);
         System.out.println(inversionCount(nums));
         System.out.println(Arrays.toString(nums));
+        int[] arr = {3, 3, 1, 3};
+        System.out.println(findMin(arr));
+        System.out.println(findMinII(arr));
     }
 }
