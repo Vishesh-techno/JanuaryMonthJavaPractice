@@ -69,13 +69,13 @@ public class TwentyNineJanuary {
         return res;
     }
 
-    public static ArrayList<Integer> nextLargerElement(int[] arr){
+    public static ArrayList<Integer> nextLargerElement(int[] arr) {
         int n = arr.length;
         ArrayList<Integer> res = new ArrayList<>();
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             int nextGreater = -1;
-            for(int j=i+1; j<n; j++){
-                if(nextGreater < arr[j]){
+            for (int j = i + 1; j < n; j++) {
+                if (nextGreater < arr[j]) {
                     nextGreater = arr[j];
                     break;
                 }
@@ -85,18 +85,18 @@ public class TwentyNineJanuary {
         return res;
     }
 
-    public static ArrayList<Integer> nextLargerElementII(int[] arr){
+    public static ArrayList<Integer> nextLargerElementII(int[] arr) {
         ArrayList<Integer> res = new ArrayList<>();
         Stack<Integer> stk = new Stack<>();
-        for(int i: arr){
+        for (int i : arr) {
             res.add(-1);
         }
-        for(int i=arr.length-1; i>=0; i--){
-            while (!stk.isEmpty() && stk.peek() <= arr[i]){
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stk.isEmpty() && stk.peek() <= arr[i]) {
                 stk.pop();
             }
 
-            if(!stk.isEmpty()){
+            if (!stk.isEmpty()) {
                 res.set(i, stk.peek());
             }
 
@@ -104,13 +104,27 @@ public class TwentyNineJanuary {
         }
         return res;
     }
+
+    public static int missingNumber(int[] nums) {
+        int n = nums.length;
+        int ans = 0;
+        for (int i = 0; i <= n; i++) {
+            ans ^= i;
+        }
+        for (int num : nums) {
+            ans ^= num;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] a = {11, 7, 1, 13, 21, 3, 7, 3};
         int[] b = {11, 3, 7, 1, 7};
-
+        int[] nums = {9, 6, 4, 2, 3, 5, 7, 0, 1};
         System.out.println(isSubset(a, b));
         System.out.println(findUnion(a, b));
         System.out.println(findUnionII(a, b));
         System.out.println(nextLargerElementII(a));
+        System.out.println(missingNumber(nums));
     }
 }
