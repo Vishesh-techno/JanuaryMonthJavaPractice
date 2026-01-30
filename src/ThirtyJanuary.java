@@ -95,6 +95,18 @@ public class ThirtyJanuary {
         return res;
     }
 
+    public static void pushZerosToEnd(int[] arr) {
+        int x = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                arr[x++] = arr[i];
+            }
+        }
+        while (x != arr.length) {
+            arr[x++] = 0;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {-2, 6, -3, -10, 0, 2};
         System.out.println(maxProductSubArray(nums));
@@ -104,5 +116,8 @@ public class ThirtyJanuary {
         System.out.println(checkEqual(a, b));
         System.out.println(checkEqualOptimal(a, b));
         System.out.println(findDifference(a, b));
+        int[] arr = {1, 2, 0, 4, 3, 0, 5, 0};
+        pushZerosToEnd(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
