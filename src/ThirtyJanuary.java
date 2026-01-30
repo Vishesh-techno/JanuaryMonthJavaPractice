@@ -62,6 +62,39 @@ public class ThirtyJanuary {
         return map.isEmpty();
     }
 
+    public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+        List<List<Integer>> res = new ArrayList<>();
+        Set<Integer> set1 = new HashSet<>();
+        for (int i : nums1) {
+            set1.add(i);
+        }
+        Set<Integer> set2 = new HashSet<>();
+        for (int i : nums2) {
+            set2.add(i);
+        }
+
+        // nums1 - nums2
+        // Set<Integer> set3 = new HashSet<>();
+        for (int i : nums1) {
+            if (set2.contains(i)) {
+                set1.remove(i);
+                set2.remove(i);
+            }
+        }
+
+        // // nums2 - nums1
+        // Set<Integer> set4 = new HashSet<>();
+        // for (int i : set2) {
+        //     if (!set1.contains(i)) {
+        //         set4.add(i);
+        //     }
+        // }
+
+        res.add(new ArrayList<>(set1));
+        res.add(new ArrayList<>(set2));
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {-2, 6, -3, -10, 0, 2};
         System.out.println(maxProductSubArray(nums));
@@ -70,5 +103,6 @@ public class ThirtyJanuary {
         int[] b = {2, 4, 15};
         System.out.println(checkEqual(a, b));
         System.out.println(checkEqualOptimal(a, b));
+        System.out.println(findDifference(a, b));
     }
 }
